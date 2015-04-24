@@ -1,0 +1,18 @@
+-------------
+- Executing - 
+-------------
+
+gcc SystemInfo.c -o SystemInfo -Wall
+./SystemInfo
+
+---------
+- Lab12 -
+---------
+
+1. The number of CPUs in your machine and their clock speed (note that different cores are
+counted as different CPUs)?
+2. the version of Linux kernel running on your system
+3. The time in day:hr:min:sec when the system was last booted
+4. The average load on the system in the last 5 minutes
+5. The total usable and currently free memory in the system
+6. The swap partitions and their sizes 
