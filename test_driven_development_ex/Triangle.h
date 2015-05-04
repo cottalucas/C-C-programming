@@ -5,7 +5,7 @@
 class Triangle
 {
     private:
-    side1, side2, side3;
+    int x, y, z;
 
     public:
     //constructor

@@ -46,7 +46,11 @@ bool isValid()
 int main()
 {
     Triangle triangle;
-    triangle.set_values(1,2,3);
+    
+    //specifications
+    triangle.setA(10);
+    triangle.setB(15);
+    triangle.setC(20);
 
     std::cout << "Test side1 " << triangle.getA();
 
