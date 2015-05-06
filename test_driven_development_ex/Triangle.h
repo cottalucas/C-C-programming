@@ -5,11 +5,16 @@
 class Triangle
 {
     private:
-    int x, y, z;
+    int side1, side2, side3;
 
     public:
     //constructor
-    Triangle(int x, int y, int z){}
+    Triangle(int x, int y, int z)
+    {
+        side1 = x;
+        side2 = y;
+        side3 = z;
+    }
     
     int getA();
     void setA(int x);

@@ -8,7 +8,7 @@ int Triangle::getA()
 
 void Triangle::setA(int x)
 {
-    side1 = x;
+    this->side1 = x;
 }
 
 int Triangle::getB()
@@ -18,7 +18,7 @@ int Triangle::getB()
 
 void Triangle::setB(int y)
 {
-    side2 = y;
+    this->side2 = y;
 }
 
 int Triangle::getC()
@@ -28,31 +28,40 @@ int Triangle::getC()
 
 void Triangle::setC(int z)
 {
-    side3 = z;
-{
+    this->side3 = z;
+}
 
-bool isValid()
+bool Triangle::isValid()
 {
     if ((side1 > 0) && (side2 > 0) && (side3 > 0))
     {
-        if (((side1 + side2) > side3) || ((side2 + side3) > side1) || ((side1 + side3) > side2))
-        {
-            return true;
-        } else { return false; }
-    } else { return false;}
+        return ((side1 + side2) > side3) || ((side2 + side3) > side1) || ((side1 + side3) > side2);
+    } 
+    
+    else 
+    { 
+        return false; 
+    }
 }
 
 
 int main()
 {
-    Triangle triangle;
+    Triangle *triangle;
+    triangle = new Triangle(10, 15, 20);    
     
-    //specifications
-    triangle.setA(10);
-    triangle.setB(15);
-    triangle.setC(20);
+    std::cout << "Test side1 " << triangle->getA() << std::endl;
+    std::cout << "Test side2 " << triangle->getB() << std::endl;
+    std::cout << "Test side3 " << triangle->getC() << std::endl;
 
-    std::cout << "Test side1 " << triangle.getA();
+    if (triangle->isValid() == true)
+    {
+        std::cout << "Valid triangle" << std::endl;
+    }
+    else
+    {
+        std::cout << "Invalid triangle" << std::endl;
+    }
 
     return 0;
 }
