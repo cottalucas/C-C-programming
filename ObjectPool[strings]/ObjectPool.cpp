@@ -16,38 +16,8 @@ A stat listing the total number of character arrays used in the object pool.
 
  */
 
-
-#include <string>
-#include <iostream>
-#include <list>
+#include "ObjectPool.h"
  
-class Resource
-{
-    int value;
- 
-    public:
-        Resource()
-        {
-            value = 0;
-        }
- 
-        void reset()
-        {
-            value = 0;
-        }
- 
-        int getValue()
-        {
-            return value;
-        }
- 
-        void setValue(int number)
-        {
-            value = number;
-        }
-};
- 
-/* Note, that this class is a singleton. */
 class ObjectPool
 {
     private:
@@ -57,12 +27,6 @@ class ObjectPool
         ObjectPool() {}
  
     public:
-        /**
-         * Static method for accessing class instance.
-         * Part of Singleton design pattern.
-         *
-         * @return ObjectPool instance.
-         */
         static ObjectPool* getInstance()
         {
             if (instance == 0)
@@ -72,14 +36,7 @@ class ObjectPool
             return instance;
         }
  
-        /**
-         * Returns instance of Resource.
-         * 
-         * New resource will be created if all the resources
-         * were used at the time of the request.
-         *
-         * @return Resource instance.
-         */
+
         Resource* getResource()
         {
             if (resources.empty())
@@ -96,16 +53,6 @@ class ObjectPool
             }
         }
  
-        /**
-         * Return resource back to the pool.
-         *
-         * The resource must be initialized back to
-         * the default settings before someone else
-         * attempts to use it.
-         *
-         * @param object Resource instance.
-         * @return void
-         */
         void returnResource(Resource* object)
         {
             object->reset();
@@ -120,28 +67,20 @@ int main()
 {
     ObjectPool* pool = ObjectPool::getInstance();
     Resource* one;
-    Resource* two;
  
-    /* Resources will be created. */
+    //resources will be created.
     one = pool->getResource();
-    one->setValue(10);
-    std::cout << "one = " << one->getValue() << " [" << one << "]" << std::endl;
- 
-    two = pool->getResource();
-    two->setValue(20);
-    std::cout << "two = " << two->getValue() << " [" << two << "]" << std::endl;
+    one->setChar("Sentence test");
+    std::cout << one->getChar() << one << std::endl;
  
     pool->returnResource(one);
-    pool->returnResource(two);
  
-    /* Resources will be reused. 
-     * Notice that the value of both resources were reset back to zero.
-     */
+    //resources will be reused. 
+    // Notice that the value of the resource were reset back to zero.
+
     one = pool->getResource();
-    std::cout << "one = " << one->getValue() << " [" << one << "]" << std::endl;
+    std::cout <<  one->getChar() << one << std::endl;
  
-    two = pool->getResource();
-    std::cout << "two = " << two->getValue() << " [" << two << "]" << std::endl;
    
     return 0;
 }
